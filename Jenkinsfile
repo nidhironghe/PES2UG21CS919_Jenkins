@@ -3,23 +3,18 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        script {
-          sh 'g++ -o my_executable a.cpp'
-          echo 'Build Stage Successful'
+        build 'PES2UG21CS919-1'
+          sh 'g++ a.cpp -o output '
         }
-      }
     }
     stage('Test') {
       steps {
-        script {
-          def output = sh(script: './my_executable', returnStdout: true).trim()
-          echo "Output of C++ file: ${output}"
+        sh './output'
         }
       }
-    }
     stage('Deploy') {
       steps {
-        echo 'Deployment Successful'
+        echo 'Deploy'
       }
     }
   }
